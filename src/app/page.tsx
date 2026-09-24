@@ -1,17 +1,17 @@
 import Navbar from "../app/Components/Navbar";
 import Banner from "../app/Components/Banner";
+import Library from "./Components/Library";
+import Footer from "./Components/Footer";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#15191c]">
-      <Navbar />
-      <Banner />
+      <Navbar></Navbar>
+      <Banner></Banner>
+      <Library></Library>
+      <Footer></Footer>
 
-      <section id="library" className="px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-4xl font-black uppercase text-white"></h2>
-        </div>
-      </section>
+     
     </main>
   );
 }
