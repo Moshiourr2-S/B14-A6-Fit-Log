@@ -1,15 +1,16 @@
-import Navbar from "../app/Components/Navbar";
-import Banner from "../app/Components/Banner";
+
+
 import Library from "./Components/Library";
-import Footer from "./Components/Footer";
+
+import Banner from "./Components/Banner/page";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#15191c]">
-      <Navbar></Navbar>
+      
       <Banner></Banner>
       <Library></Library>
-      <Footer></Footer>
+    
 
      
     </main>
