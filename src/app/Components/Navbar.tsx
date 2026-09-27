@@ -8,46 +8,42 @@ export default function Navbar() {
   const [planCount, setPlanCount] = useState(0);
   const [savedCount, setSavedCount] = useState(0);
 
-  const updateCounts = () => {
-    setPlanCount(getPlan().length);
-    setSavedCount(getSaved().length);
-  };
-
   useEffect(() => {
-    updateCounts();
-
-    const handleStorageChange = () => {
-      updateCounts();
+    const updateCounts = () => {
+      setPlanCount(getPlan().length);
+      setSavedCount(getSaved().length);
     };
 
-    window.addEventListener("fitlog-storage", handleStorageChange);
+    updateCounts();
 
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("fitlog-storage", updateCounts);
+    window.addEventListener("storage", updateCounts);
 
     return () => {
-      window.removeEventListener("fitlog-storage", handleStorageChange);
-
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("fitlog-storage", updateCounts);
+      window.removeEventListener("storage", updateCounts);
     };
   }, []);
 
   return (
-    <header className="border-b border-[#20232b] bg-[#0d0f14] text-white">
-      <div className="mx-auto flex min-h-18.5 max-w-305 items-center justify-between px-6 md:px-10 lg:px-12">
-        {/* =========================================
-            LOGO
-        ========================================= */}
+    <header className="border-b border-[#28232b] bg-[#0d0d0d] text-white">
+      <div className="mx-auto flex h-22.5 w-full max-w-275 items-center px-6">
+        {/* ================= LEFT ================= */}
+        <div className="flex flex-1  justify-start">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl text-white">⚒</span>
 
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl text-[#caff00]">⚒</span>
+            <span className="  text-xl  font-black tracking-tight  text-white">
+              FitLog
+            </span>
+          </Link>
+        </div>
 
-          <span className="text-xl font-black tracking-tight">FITLOG</span>
-        </Link>
-
-        <nav className="hidden items-center gap-10 md:flex">
+        {/* ================= CENTER ================= */}
+        <nav className="flex items-center justify-center gap-8">
           <Link
             href="/workouts"
-            className="text-sm font-medium text-[#d4d5da] transition hover:text-[#caff00]"
+            className="rounded-full bg-[#caff00] px-4 py-2 text-sm font-medium text-black transition hover:bg-[#d8ff4d]"
           >
             Workouts
           </Link>
@@ -60,25 +56,26 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-5">
+        {/* ================= RIGHT ================= */}
+        <div className="flex flex-1 items-center justify-end gap-7">
           <Link
             href="/my-plan"
-            className="group flex items-center gap-2 text-sm font-medium text-[#d4d5da] transition hover:text-white"
+            className="flex items-center gap-2 text-sm font-medium text-[#d4d5da] transition hover:text-white"
           >
             <span>Plan</span>
 
-            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#caff00] px-2 text-xs font-black text-black transition group-hover:scale-105">
+            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#caff00] px-2 text-xs font-black text-black">
               {planCount}
             </span>
           </Link>
 
           <Link
             href="/my-plan?saved=true"
-            className="group flex items-center gap-2 text-sm font-medium text-[#d4d5da] transition hover:text-white"
+            className="flex items-center gap-2 text-sm font-medium text-[#d4d5da] transition hover:text-white"
           >
             <span>Saved</span>
 
-            <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-[#414550] px-2 text-xs font-medium text-[#d4d5da] transition group-hover:border-[#caff00] group-hover:text-[#caff00]">
+            <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-[#414550] px-2 text-xs font-medium text-[#d4d5da]">
               {savedCount}
             </span>
           </Link>
@@ -87,3 +84,11 @@ export default function Navbar() {
     </header>
   );
 }
+
+
+
+
+
+
+
+
